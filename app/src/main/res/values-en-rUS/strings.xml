@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MVVM</string>
+    <string name="title_note">Title</string>
+    <string name="text_note">Text</string>
+    <string name="save_button">Save</string>
+    <string name="about_info">This app was created by E.V. Medvedev in course of android development</string>
+    <string name="date_note">Date</string>
+    <string name="dialog_title">Information</string>
+    <string name="dialog_text">Do you REALLY want to know?</string>
+    <string name="dialog_positive_button">Yes.</string>
+    <string name="dialog_negative_button">Maybe later…</string>
+    <string name="accessibility_info">about</string>
+    <string name="accessibility_add">add note</string>
+    <string name="accessibility_save_note">save note</string>
+    <string name="accessibility_share">share note</string>
+</resources>
