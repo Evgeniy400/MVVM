@@ -14,4 +14,6 @@
     <string name="accessibility_add">add note</string>
     <string name="accessibility_save_note">save note</string>
     <string name="accessibility_share">share note</string>
+    <string name="success_save_toast"> Note save success</string>
+    <string name="error_save_toast"> Note save failed </string>
 </resources>

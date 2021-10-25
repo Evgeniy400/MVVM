@@ -3,29 +3,46 @@ package com.example.mvvm.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mvvm.model.MainModel
-import com.example.mvvm.model.database.AppDataBase
+import androidx.lifecycle.viewModelScope
+import com.example.mvvm.google.SingleLiveEvent
+import com.example.mvvm.model.Repository
 import com.example.mvvm.model.database.Note
+import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.ArrayList
 
-class MainViewModel(dataBase: AppDataBase) : ViewModel() {
+class MainViewModel(private var repository: Repository) : ViewModel() {
     private var _noteCount = MutableLiveData<Int>()
     private var _notes = MutableLiveData<ArrayList<Note>>()
     private var _currentNote = MutableLiveData<Note>()
-    private var model = MainModel(dataBase)
     var currentNote: LiveData<Note> = _currentNote
     var noteCount: LiveData<Int> = _noteCount
 
-    suspend fun initVM() {
-        _notes.value = ArrayList(model.getAllNotes())
-        _noteCount.value = _notes.value?.size
+
+    val onSuccessSaveNote = SingleLiveEvent<Unit>()
+    val onErrorSaveNote = SingleLiveEvent<Unit>()
+
+    fun initVM() {
+        viewModelScope.launch {
+            _notes.value = ArrayList(repository.getAllNotes())
+            _noteCount.value = _notes.value?.size
+        }
     }
 
-    suspend fun addNote(title: String, text: String) {
-        if (title != "null" && text != "null") {
-            model.addNote(title, text)
-            _notes.value?.add(Note(title, text))
+    fun addNote(title: String?, text: String?, date: String) {
+
+        if (title != null && text != null && title != "" && text != "") {
+            viewModelScope.launch {
+                repository.addNote(Note(title, text, date.toString()))
+            }
+
+            _notes.value?.add(Note(title, text, date.toString()))
             _noteCount.value = _noteCount.value?.inc()
+            onSuccessSaveNote.call()
+        } else {
+            onErrorSaveNote.call()
         }
+
     }
 
     fun pageSelected(position: Int) {

@@ -13,5 +13,8 @@
     <string name="accessibility_add">добавления новой заметки</string>
     <string name="accessibility_save_note">сохранения новой заметки</string>
     <string name="accessibility_share">поделиться заметкой</string>
+    <string name="success_save_toast"> Заметка успешно сохранена </string>
+    <string name="error_save_toast"> Ошибка сохрнения заметки</string>
+
 
 </resources>

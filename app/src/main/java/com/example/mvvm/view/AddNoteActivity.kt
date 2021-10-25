@@ -9,6 +9,7 @@ import com.example.mvvm.databinding.ActivityAddNoteBinding
 
 class AddNoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddNoteBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddNoteBinding.inflate(layoutInflater)
@@ -16,8 +17,8 @@ class AddNoteActivity : AppCompatActivity() {
 
         binding.button.setOnClickListener {
             val intent = Intent()
-            intent.putExtra("Title", findViewById<EditText>(R.id.editTextTitle).text.toString())
-            intent.putExtra("Text", findViewById<EditText>(R.id.editTextText).text.toString())
+            intent.putExtra("Title", binding.editTextTitle.text.toString())
+            intent.putExtra("Text", binding.editTextText.text.toString())
             setResult(RESULT_OK, intent)
             finish()
         }
