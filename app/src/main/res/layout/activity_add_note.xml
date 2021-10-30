@@ -8,37 +8,38 @@
 
     <EditText
         android:id="@+id/editTextTitle"
+        style="@style/TextStyle.Big"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="true"
         android:gravity="center_horizontal"
         android:hint="@string/title_note"
         android:inputType="text"
-        android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:focusable="true"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextText"
+        style="@style/TextStyle.Normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:ems="10"
         android:layout_gravity="start"
+        android:layout_marginTop="5dp"
+        android:focusable="true"
         android:hint="@string/text_note"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTitle"
-        android:focusable="true"/>
+
+        app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
 
     <Button
+        style="@style/TextStyle.Normal"
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/save_button"
+        android:layout_margin="10dp"
         android:contentDescription="@string/accessibility_save_note"
-        app:layout_constraintTop_toBottomOf="@id/editTextText"
-        android:focusable="true"/>
+        android:focusable="true"
+        android:text="@string/save_button"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

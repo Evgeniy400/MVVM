@@ -93,8 +93,8 @@ class MainActivity : FragmentActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val title = data?.getStringExtra("Title").toString()
-        val text = data?.getStringExtra("Text").toString()
+        val title = data?.getStringExtra("Title") ?: ""
+        val text = data?.getStringExtra("Text") ?: ""
         val date = (getMediumDateFormat(this)).format(Date())
         viewModel.addNote(title, text, date)
 
