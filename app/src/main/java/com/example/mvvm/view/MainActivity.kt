@@ -1,6 +1,8 @@
 package com.example.mvvm.view
 
 import android.content.Intent
+import android.icu.text.DateFormat.MEDIUM
+import android.icu.text.DateFormat.getDateInstance
 import android.os.Bundle
 import android.text.format.DateFormat.getMediumDateFormat
 import android.widget.Toast
@@ -10,13 +12,18 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.mvvm.R
 import com.example.mvvm.adapter.NotePagerAdapter
 import com.example.mvvm.databinding.ActivityMainBinding
-import com.example.mvvm.model.RepositoryImpl
+import com.example.mvvm.model.Repository_impl
 import com.example.mvvm.model.database.AppDataBase
 import com.example.mvvm.view.fragment.AboutDialogFragment
 import com.example.mvvm.viewmodel.MainViewModel
 import com.example.mvvm.viewmodel.MyViewModelFactory
 //import java.text.DateFormat
 import java.util.*
+import android.text.format.DateFormat
+import com.example.mvvm.model.RepositoryImpl
+import com.example.mvvm.model.database.Note
+import java.text.DateFormat.MEDIUM
+import java.text.DateFormat.getDateInstance
 
 
 class MainActivity : FragmentActivity() {
@@ -87,8 +94,8 @@ class MainActivity : FragmentActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val title = data?.getStringExtra("Title") ?: ""
-        val text = data?.getStringExtra("Text") ?: ""
+        val title = data?.getStringExtra("Title").toString()
+        val text = data?.getStringExtra("Text").toString()
         val date = (getMediumDateFormat(this)).format(Date())
         viewModel.addNote(title, text, date)
 
