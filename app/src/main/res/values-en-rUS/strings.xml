@@ -16,4 +16,5 @@
     <string name="accessibility_share">share note</string>
     <string name="success_save_toast"> Note save success</string>
     <string name="error_save_toast"> Note save failed </string>
+    <string name="btn_download">Download</string>
 </resources>

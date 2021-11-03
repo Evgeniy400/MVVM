@@ -1,8 +1,6 @@
 package com.example.mvvm.view
 
 import android.content.Intent
-import android.icu.text.DateFormat.MEDIUM
-import android.icu.text.DateFormat.getDateInstance
 import android.os.Bundle
 import android.text.format.DateFormat.getMediumDateFormat
 import android.widget.Toast
@@ -12,17 +10,13 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.mvvm.R
 import com.example.mvvm.adapter.NotePagerAdapter
 import com.example.mvvm.databinding.ActivityMainBinding
-import com.example.mvvm.model.Repository_impl
+import com.example.mvvm.model.RepositoryImpl
 import com.example.mvvm.model.database.AppDataBase
 import com.example.mvvm.view.fragment.AboutDialogFragment
 import com.example.mvvm.viewmodel.MainViewModel
 import com.example.mvvm.viewmodel.MyViewModelFactory
 //import java.text.DateFormat
 import java.util.*
-import android.text.format.DateFormat
-import com.example.mvvm.model.database.Note
-import java.text.DateFormat.MEDIUM
-import java.text.DateFormat.getDateInstance
 
 
 class MainActivity : FragmentActivity() {
@@ -35,7 +29,7 @@ class MainActivity : FragmentActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this, MyViewModelFactory(Repository_impl(AppDataBase.getDatabase(this)))).get(
+        viewModel = ViewModelProvider(this, MyViewModelFactory(RepositoryImpl(AppDataBase.getDatabase(this)))).get(
             MainViewModel::class.java
         )
         viewModel.initVM()

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.mvvm.databinding.FragmentShowNoteBinding
-import com.example.mvvm.model.Repository_impl
+import com.example.mvvm.model.RepositoryImpl
 import com.example.mvvm.model.database.AppDataBase
 import com.example.mvvm.viewmodel.MainViewModel
 import com.example.mvvm.viewmodel.MyViewModelFactory
@@ -22,7 +22,7 @@ class ShowNoteFragment : Fragment() {
         binding = FragmentShowNoteBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(
             requireActivity(),
-            MyViewModelFactory(Repository_impl(AppDataBase.getDatabase(requireActivity())))
+            MyViewModelFactory(RepositoryImpl(AppDataBase.getDatabase(requireActivity())))
         ).get(MainViewModel::class.java)
         viewModel.currentNote.observe(this) {
             binding.noteTitleFragment.text = it.title

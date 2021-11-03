@@ -2,7 +2,7 @@ package com.example.mvvm.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mvvm.model.Repository
-import com.example.mvvm.model.Repository_impl
+import com.example.mvvm.model.RepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.test.setMain
@@ -14,7 +14,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mockito
-import java.util.*
 import kotlin.random.Random
 
 
@@ -30,7 +29,7 @@ class MainViewModelTest {
 
     @Before
     fun setUp() {
-        repository = Mockito.mock(Repository_impl::class.java)
+        repository = Mockito.mock(RepositoryImpl::class.java)
         viewModel = MainViewModel(repository)
 
         Dispatchers.setMain(mainThreadSurrogate)
