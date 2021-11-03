@@ -12,7 +12,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.mvvm.R
 import com.example.mvvm.adapter.NotePagerAdapter
 import com.example.mvvm.databinding.ActivityMainBinding
-import com.example.mvvm.model.Repository_impl
 import com.example.mvvm.model.database.AppDataBase
 import com.example.mvvm.view.fragment.AboutDialogFragment
 import com.example.mvvm.viewmodel.MainViewModel
