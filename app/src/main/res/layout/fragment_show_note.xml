@@ -14,45 +14,54 @@
 
 
         <TextView
-            style="@style/TextStyle.Big"
             android:id="@+id/noteTitleFragment"
+            style="@style/TextStyle.Big"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:focusable="true"
-            android:text="@string/title_note"/>
+            android:gravity="center"
+            android:text="@string/title_note" />
 
         <TextView
-            style="@style/TextStyle.Small"
             android:id="@+id/noteDateFragment"
+            style="@style/TextStyle.Small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
             android:focusable="true"
+            android:gravity="end"
             android:text="@string/date_note" />
 
         <TextView
-            style="@style/TextStyle.Normal"
             android:id="@+id/noteTextFragment"
+            style="@style/TextStyle.Normal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
             android:gravity="start"
-            android:text="@string/text_note"
-            android:focusable="true" />
+            android:text="@string/text_note" />
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareNote"
-        android:layout_width="55dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_margin="32dp"
         android:clickable="true"
+        android:contentDescription="@string/accessibility_share"
         android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_share"
-        android:contentDescription="@string/accessibility_share"/>
+        app:srcCompat="@android:drawable/ic_menu_share" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/deleteNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|bottom"
+        android:layout_margin="32dp"
+        android:clickable="true"
+        android:contentDescription="@string/delete_note"
+        android:focusable="true"
+        android:src="@android:drawable/ic_menu_delete" />
 
 </FrameLayout>

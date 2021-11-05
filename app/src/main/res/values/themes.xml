@@ -2,25 +2,25 @@
     <!-- Base application theme. -->
     <style name="Theme.MVVM" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#fff176</item>
-        <item name="colorPrimaryVariant">#cabf45</item>
-        <item name="colorOnPrimary">#fffff0</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/status_bar</item>
+        <item name="colorOnPrimary">@color/background_basic</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#fa9abd</item>
-        <item name="colorSecondaryVariant">#c56a8d</item>
-        <item name="colorOnSecondary">#ffccef</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/text_color</item>
+        <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:textColorPrimary">#c56a8d</item>
-        <item name="android:textColorHint">#c56a8d</item>
-        <item name="android:windowBackground">#fffff0</item>
+        <item name="android:textColorPrimary">@color/text_color</item>
+        <item name="android:textColorHint">@color/text_color</item>
+        <item name="android:windowBackground">@color/background_basic</item>
         <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
     </style>
 
     <style name="TextStyle">
-        <item name="android:textColor">#c56a8d</item>
-        <item name="android:textColorHint">#c56a8d</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorHint">@color/text_color</item>
     </style>
 
     <style name="TextStyle.Big">
@@ -37,22 +37,23 @@
     </style>
 
     <style name="ShowNoteStyle">
-        <item name="android:background">#fffff0</item>
+        <item name="android:background">@color/background_basic</item>
     </style>
 
     <style name="AddNoteStyle">
-        <item name="android:background">#fffff0</item>
+        <item name="android:background">@color/background_basic</item>
     </style>
 
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">#cabf45</item>
-        <item name="android:textColorPrimary">#c56a8d</item>
-        <item name="android:background">#fffff0</item>
+        <item name="colorAccent">@color/status_bar</item>
+        <item name="android:textColorPrimary">@color/text_color</item>
+        <item name="android:background">@color/background_basic</item>
     </style>
 
     <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:textColorPrimary">#fa9abd</item>
+        <item name="android:textColorPrimary">@color/secondary</item>
     </style>
+
 
 
 </resources>

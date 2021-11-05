@@ -16,6 +16,8 @@
     <string name="success_save_toast"> Заметка успешно сохранена </string>
     <string name="error_save_toast"> Ошибка сохрнения заметки</string>
     <string name="btn_download">Скачать из сети</string>
+    <string name="error_download">Ошибка загрузки</string>
+    <string name="delete_note">удалить заметку</string>
 
 
 </resources>
