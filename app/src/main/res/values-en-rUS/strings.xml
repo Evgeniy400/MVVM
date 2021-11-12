@@ -17,4 +17,6 @@
     <string name="success_save_toast"> Note save success</string>
     <string name="error_save_toast"> Note save failed </string>
     <string name="btn_download">Download</string>
+    <string name="error_download">Download failure</string>
+    <string name="delete_note">Delete note</string>
 </resources>
