@@ -25,6 +25,7 @@
 
     <style name="TextStyle.Big">
         <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
 
     </style>
 
@@ -52,6 +53,12 @@
 
     <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/secondary</item>
+    </style>
+
+    <style name="ButtonStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorHint">@color/text_color</item>
     </style>
 
 

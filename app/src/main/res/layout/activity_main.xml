@@ -36,7 +36,17 @@
         android:contentDescription="@string/accessibility_add"
         app:srcCompat="@android:drawable/ic_menu_add"
         android:focusable="true"/>
+
+    <androidx.appcompat.widget.SearchView
+        style="@style/TextStyle.Normal"
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
     </androidx.appcompat.widget.Toolbar>
+
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
@@ -45,6 +55,9 @@
         android:focusable="true"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

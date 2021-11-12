@@ -14,8 +14,9 @@ import com.example.mvvm.model.database.AppDataBase
 import com.example.mvvm.model.database.Note
 import com.example.mvvm.viewmodel.MyViewModelFactory
 import com.example.mvvm.viewmodel.ShowNoteViewModel
+import com.example.mvvm.viewmodel.ShowNoteViewModelFactory
 
-class ShowNoteFragment(private var note: Note) : Fragment() {
+class ShowNoteFragment() : Fragment() {
     private lateinit var binding: FragmentShowNoteBinding
     private lateinit var viewModel: ShowNoteViewModel
 
@@ -24,27 +25,36 @@ class ShowNoteFragment(private var note: Note) : Fragment() {
         super.onCreate(savedInstanceState)
         binding = FragmentShowNoteBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(
-            requireActivity(),
-            MyViewModelFactory(RepositoryImpl(AppDataBase.getDatabase(requireActivity())))
+            this,
+            ShowNoteViewModelFactory(
+                RepositoryImpl(AppDataBase.getDatabase(requireActivity())),
+                arguments?.getParcelable("note") ?: Note("", "")
+            )
         ).get(ShowNoteViewModel::class.java)
+
+        viewModel.noteData.observe(this){
+
+        }
 
         binding.shareNote.setOnClickListener {
             startActivity(Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
                 putExtra(
                     Intent.EXTRA_TEXT,
-                    "${note.title}\n${note.text}"
+                    "${viewModel.noteData.value?.title}\n${viewModel.noteData.value?.text}"
                 )
             })
         }
 
-        binding.deleteNote.setOnClickListener{
-            viewModel.deleteNote(note)
+        binding.deleteNote.setOnClickListener {
+            viewModel.deleteNote()
+        }
+        viewModel.noteData.value?.let {
+            binding.noteTitleFragment.text = "${it.title} #${it.id}"
+            binding.noteDateFragment.text = it.time
+            binding.noteTextFragment.text = it.text
         }
 
-        binding.noteTitleFragment.text = "${note.title} #${note.id}"
-        binding.noteDateFragment.text = note.time
-        binding.noteTextFragment.text = note.text
     }
 
     override fun onCreateView(

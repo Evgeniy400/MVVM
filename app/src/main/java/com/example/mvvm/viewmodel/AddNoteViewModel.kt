@@ -1,5 +1,6 @@
 package com.example.mvvm.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,7 @@ import com.example.mvvm.model.Repository
 import com.example.mvvm.model.database.Note
 import com.example.mvvm.network.NetworkModel
 import com.example.mvvm.network.NoteInteractor
+import com.example.mvvm.network.NoteInteractorImp
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,6 +18,7 @@ import retrofit2.Response
 
 class AddNoteViewModel(private var repository: Repository) : ViewModel() {
     private val _loadNote = MutableLiveData<NetworkModel>()
+    private val noteInteractor: NoteInteractor = NoteInteractorImp()
 
     val onSuccessSaveNote = SingleLiveEvent<Unit>()
     val onErrorSaveNote = SingleLiveEvent<Unit>()
@@ -24,20 +27,9 @@ class AddNoteViewModel(private var repository: Repository) : ViewModel() {
 
 
     fun loadNote() {
-        NoteInteractor().getData().enqueue(object : Callback<NetworkModel> {
-            override fun onResponse(call: Call<NetworkModel>, response: Response<NetworkModel>) {
-                if (response.isSuccessful) {
-                    _loadNote.value = response.body()
-                } else {
-                    onLoadNoteFailed.call()
-                }
-
-            }
-
-            override fun onFailure(call: Call<NetworkModel>, t: Throwable) {
-                onLoadNoteFailed.call()
-            }
-        })
+        noteInteractor.getData(
+            success = { model: NetworkModel -> _loadNote.value = model.also { Log.d("BackupWorker", "success") } },
+            failure = { onLoadNoteFailed.call().also { Log.d("BackupWorker", "failure") }  })
     }
 
     fun addNote(title: String, text: String, date: String) {

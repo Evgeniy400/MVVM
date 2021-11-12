@@ -1,5 +1,6 @@
 package com.example.mvvm.adapter
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -13,6 +14,10 @@ class NotePagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa) {
     override fun getItemCount(): Int = notes.size
 
     override fun createFragment(position: Int): Fragment {
-        return ShowNoteFragment(notes[position])
+        val frag = ShowNoteFragment()
+        frag.arguments = Bundle().apply {
+            putParcelable("note", notes[position])
+        }
+        return frag
     }
 }
