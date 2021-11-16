@@ -19,4 +19,6 @@
     <string name="btn_download">Download</string>
     <string name="error_download">Download failure</string>
     <string name="delete_note">Delete note</string>
+    <string name="locationButton">Where am I</string>
+    <string name="htmlButton">Go to web</string>
 </resources>

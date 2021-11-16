@@ -28,8 +28,8 @@ class AddNoteViewModel(private var repository: Repository) : ViewModel() {
 
     fun loadNote() {
         noteInteractor.getData(
-            success = { model: NetworkModel -> _loadNote.value = model.also { Log.d("BackupWorker", "success") } },
-            failure = { onLoadNoteFailed.call().also { Log.d("BackupWorker", "failure") }  })
+            success = { model: NetworkModel -> _loadNote.value = model},
+            failure = { onLoadNoteFailed.call()})
     }
 
     fun addNote(title: String, text: String, date: String) {
