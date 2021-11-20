@@ -1,4 +1,4 @@
-package com.example.mvvm.google
+package com.example.mvvm.service
 /*
  *  Copyright 2017 Google Inc.
  *

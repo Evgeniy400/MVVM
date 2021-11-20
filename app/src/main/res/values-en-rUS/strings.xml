@@ -23,6 +23,8 @@
     <string name="htmlButton">Go to web</string>
     <string name="permission_info">Need access to geolocation</string>
     <string name="gps_processing">Receiving data</string>
+    <string name="gps_disabled">gps disabled</string>
+
 
 
 </resources>

@@ -18,6 +18,7 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
 import com.example.mvvm.R
 import com.example.mvvm.databinding.ActivityAboutBinding
@@ -90,23 +91,24 @@ class AboutActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("MissingPermission", "SetTextI18n")
     private fun getCoords() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            Toast.makeText(
-                this,
-                getString(R.string.gps_processing),
-                Toast.LENGTH_LONG
-            ).show()
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 5f) {
-                binding.myTextView.setText("Coordinates by ${it.provider} ${it.altitude} ${it.latitude}")
+        if (isPermissionGranted()) {
+            if(isGpsEnabled()) {
+                Toast.makeText(
+                    this,
+                    getString(R.string.gps_processing),
+                    Toast.LENGTH_LONG
+                ).show()
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 5f) {
+                    binding.myTextView.setText("Coordinates by ${it.provider} ${it.altitude} ${it.latitude}")
+                }
+            } else {
+                Toast.makeText(
+                    this,
+                    getString(R.string.gps_disabled),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         } else {
             ActivityCompat.requestPermissions(
@@ -119,4 +121,21 @@ class AboutActivity : AppCompatActivity() {
             )
         }
     }
+
+
+    private fun isGpsEnabled(): Boolean {
+        val locationManager: LocationManager =
+            getSystemService(LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+    }
+
+    private fun isPermissionGranted() = ActivityCompat.checkSelfPermission(
+        this,
+        Manifest.permission.ACCESS_FINE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+        this,
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED
 }
+
+

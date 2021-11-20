@@ -23,6 +23,8 @@
     <string name="htmlText" translatable="false"><![CDATA[<em>Координаты</em>]]></string>
     <string name="permission_info">Необходим доступ к геолокации</string>
     <string name="gps_processing">Получение данных</string>
+    <string name="gps_disabled">Включите местоположение</string>
+
 
 
 
