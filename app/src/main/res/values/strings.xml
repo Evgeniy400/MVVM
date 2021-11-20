@@ -21,6 +21,8 @@
     <string name="locationButton">Узнать местоположение</string>
     <string name="htmlButton">Посетить сайт</string>
     <string name="htmlText" translatable="false"><![CDATA[<em>Координаты</em>]]></string>
+    <string name="permission_info">Необходим доступ к геолокации</string>
+    <string name="gps_processing">Получение данных</string>
 
 
 

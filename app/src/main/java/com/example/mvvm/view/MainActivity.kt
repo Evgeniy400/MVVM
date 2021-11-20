@@ -2,21 +2,16 @@ package com.example.mvvm.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.format.DateFormat.getMediumDateFormat
 import androidx.appcompat.widget.SearchView
-import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.work.PeriodicWorkRequest
-import androidx.work.WorkManager
-import com.example.mvvm.R
+import androidx.work.*
 import com.example.mvvm.adapter.NotePagerAdapter
 import com.example.mvvm.databinding.ActivityMainBinding
 import com.example.mvvm.model.database.AppDataBase
 import com.example.mvvm.view.fragment.AboutDialogFragment
 import com.example.mvvm.viewmodel.MainViewModel
 import com.example.mvvm.viewmodel.MyViewModelFactory
-import java.util.*
 import com.example.mvvm.model.RepositoryImpl
 import com.example.mvvm.model.database.Note
 import com.example.mvvm.workmanager.BackupWorker
@@ -24,7 +19,7 @@ import java.util.concurrent.TimeUnit.*
 import kotlin.collections.ArrayList
 
 
-class MainActivity : FragmentActivity() {
+open class MainActivity : FragmentActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: NotePagerAdapter
@@ -94,8 +89,9 @@ class MainActivity : FragmentActivity() {
     private fun initWorkers() {
         WorkManager.getInstance().enqueue(
             PeriodicWorkRequest.Builder(
-                BackupWorker::class.java, 20, MINUTES
-            ).build()
+                BackupWorker::class.java, 1, MINUTES
+            )
+                .build()
         )
     }
 

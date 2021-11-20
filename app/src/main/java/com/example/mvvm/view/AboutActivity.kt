@@ -19,7 +19,9 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.mvvm.R
 import com.example.mvvm.databinding.ActivityAboutBinding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
@@ -28,7 +30,6 @@ class AboutActivity : AppCompatActivity() {
     private lateinit var locationManager: LocationManager
 
     private val REQUEST_LOCATION = 1
-
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -43,9 +44,9 @@ class AboutActivity : AppCompatActivity() {
         }
 
 
-        binding.myTextView.setOnTouchListener(object: View.OnTouchListener{
+        binding.myTextView.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View, event: MotionEvent): Boolean {
-                when(event.action){
+                when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
                         ObjectAnimator.ofFloat(v, View.ROTATION, 0f, 360f).apply {
                             duration = 1000
@@ -56,7 +57,7 @@ class AboutActivity : AppCompatActivity() {
                         }
                     }
                 }
-                return  true
+                return true
             }
         })
 
@@ -72,10 +73,17 @@ class AboutActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode){
+        when (requestCode) {
             REQUEST_LOCATION -> {
-                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+
                     getCoords()
+                } else {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.permission_info),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
             }
@@ -83,7 +91,7 @@ class AboutActivity : AppCompatActivity() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun getCoords(){
+    private fun getCoords() {
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -92,12 +100,23 @@ class AboutActivity : AppCompatActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
+            Toast.makeText(
+                this,
+                getString(R.string.gps_processing),
+                Toast.LENGTH_LONG
+            ).show()
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 5f) {
                 binding.myTextView.setText("Coordinates by ${it.provider} ${it.altitude} ${it.latitude}")
-
             }
         } else {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,  Manifest.permission.ACCESS_COARSE_LOCATION), REQUEST_LOCATION)
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                REQUEST_LOCATION
+            )
         }
     }
 }

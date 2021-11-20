@@ -10,5 +10,7 @@ interface Repository {
 
     fun getAllNotes(): LiveData<List<Note>>
 
+
+
     suspend fun deleteNote(note: Note)
 }

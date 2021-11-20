@@ -1,10 +1,10 @@
 package com.example.mvvm.view
 
-import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.text.Html
 import android.util.AttributeSet
-import android.view.MotionEvent
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.mvvm.R
 
@@ -14,10 +14,11 @@ class MyTextView @JvmOverloads constructor(
     defStyleAttributes: Int = 0
 ): AppCompatTextView(context, attributes, defStyleAttributes) {
 
-    var htmlText: String? = null
+    private var htmlText: String? = null
+    @RequiresApi(Build.VERSION_CODES.N)
     set(value){
         field = value
-        text = value?.let { Html.fromHtml(value) }
+        text = value?.let { Html.fromHtml(value, Html.FROM_HTML_MODE_COMPACT) }
     }
 
     init {

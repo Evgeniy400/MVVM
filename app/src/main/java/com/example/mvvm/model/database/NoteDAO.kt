@@ -9,6 +9,9 @@ interface NoteDAO {
     @Query("SELECT * FROM notes")
     fun getAll(): LiveData<List<Note>>
 
+    @Query("SELECT * FROM notes")
+    suspend fun getAllSuspend(): List<Note>
+
     @Insert
     suspend fun addNote(note: Note)
 
