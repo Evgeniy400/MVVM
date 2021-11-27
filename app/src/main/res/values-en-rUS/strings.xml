@@ -7,7 +7,9 @@
     <string name="about_info">This app was created by E.V. Medvedev in course of android development</string>
     <string name="date_note">Date</string>
     <string name="dialog_title">Information</string>
+    <string name="dialog_title_geo">Geolocation</string>
     <string name="dialog_text">Do you REALLY want to know?</string>
+    <string name="dialog_text_geo">For correct operation, enable geolocation services</string>
     <string name="dialog_positive_button">Yes.</string>
     <string name="dialog_negative_button">Maybe later…</string>
     <string name="accessibility_info">about</string>
@@ -19,4 +21,12 @@
     <string name="btn_download">Download</string>
     <string name="error_download">Download failure</string>
     <string name="delete_note">Delete note</string>
+    <string name="locationButton">Where am I</string>
+    <string name="htmlButton">Go to web</string>
+    <string name="permission_info">Need access to geolocation</string>
+    <string name="gps_processing">Receiving data</string>
+    <string name="gps_disabled">gps disabled</string>
+
+
+
 </resources>
