@@ -13,6 +13,7 @@ import android.location.LocationListener
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -22,6 +23,8 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
 import com.example.mvvm.R
 import com.example.mvvm.databinding.ActivityAboutBinding
+import com.example.mvvm.view.fragment.AboutDialogFragment
+import com.example.mvvm.view.fragment.EnableGPSDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -104,11 +107,8 @@ class AboutActivity : AppCompatActivity() {
                     binding.myTextView.setText("Coordinates by ${it.provider} ${it.altitude} ${it.latitude}")
                 }
             } else {
-                Toast.makeText(
-                    this,
-                    getString(R.string.gps_disabled),
-                    Toast.LENGTH_LONG
-                ).show()
+                EnableGPSDialogFragment().show(supportFragmentManager, null)
+//                getCoords()
             }
         } else {
             ActivityCompat.requestPermissions(

@@ -3,10 +3,12 @@
     <string name="title_note">Заголовок</string>
     <string name="text_note">Текст</string>
     <string name="save_button">Сохранить</string>
-    <string name="about_info"><![CDATA[<p>Приложение создано <em>Медведевым Е.В.</em> в рамках курса <strong>обучения Android разработке</strong>]]></string>
+    <string name="about_info"><![CDATA[<p>Приложение создано <em>Медведевым Е.В.</em> в рамках курса <strong>обучения Android разработке</strong>]]></string>-->
     <string name="date_note">Дата</string>
     <string name="dialog_title">Информация</string>
+    <string name="dialog_title_geo">Геолокация</string>
     <string name="dialog_text">Вы ТОЧНО хотите узнать это?</string>
+    <string name="dialog_text_geo">Для корректной работы включите сервисы геолокации</string>
     <string name="dialog_positive_button">Да.</string>
     <string name="dialog_negative_button">Что-то перехотелось…</string>
     <string name="accessibility_info">информации о приложении</string>
