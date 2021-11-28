@@ -9,7 +9,7 @@ import com.example.mvvm.view.fragment.ShowNoteFragment
 
 class NotePagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa) {
 
-    var notes = ArrayList<Note>()
+    var notes = emptyList<Note>()
 
     override fun getItemCount(): Int = notes.size
 

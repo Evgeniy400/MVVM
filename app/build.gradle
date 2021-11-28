@@ -8,7 +8,7 @@ plugins {
 android {
     compileSdk 30
 
-    viewBinding{
+    viewBinding {
         enabled = true
     }
 
@@ -42,6 +42,7 @@ android {
 }
 
 dependencies {
+
 
     implementation "android.arch.work:work-runtime-ktx:1.0.1"
     implementation "android.arch.work:work-runtime:1.0.1"

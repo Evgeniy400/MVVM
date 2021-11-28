@@ -7,5 +7,5 @@ import com.example.mvvm.model.database.Note
 class BackupRepositoryImpl(db: AppDataBase): BackupRepository {
     private val dao = db.noteDao()
 
-    override suspend fun getNotes(): List<Note> = dao.getAllSuspend()
+    override suspend fun getNotes(): List<Note> =  emptyList()//dao.getAllSuspend()
 }

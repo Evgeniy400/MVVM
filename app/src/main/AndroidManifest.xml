@@ -14,9 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MVVM">
         <activity
+            android:name=".view.fragment.RecyclerViewFragment"
+            android:exported="false" />
+        <activity
             android:name=".view.WebViewActivity"
             android:exported="false" />
-
         <activity
             android:name=".view.AboutActivity"
             android:exported="true" />

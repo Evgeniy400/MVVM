@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.work.*
 import com.example.mvvm.adapter.NotePagerAdapter
+import com.example.mvvm.adapter.RecyclerViewAdapter
 import com.example.mvvm.databinding.ActivityMainBinding
 import com.example.mvvm.model.database.AppDataBase
 import com.example.mvvm.view.fragment.AboutDialogFragment
@@ -14,6 +15,8 @@ import com.example.mvvm.viewmodel.MainViewModel
 import com.example.mvvm.viewmodel.MyViewModelFactory
 import com.example.mvvm.model.RepositoryImpl
 import com.example.mvvm.model.database.Note
+import com.example.mvvm.view.fragment.RecyclerViewFragment
+import com.example.mvvm.view.fragment.ViewPagerFragment
 import com.example.mvvm.workmanager.BackupWorker
 import java.util.concurrent.TimeUnit.*
 import kotlin.collections.ArrayList
@@ -73,15 +76,30 @@ open class MainActivity : FragmentActivity() {
             viewModel.notes = it
             val ind = binding.viewPager.currentItem
             adapter = NotePagerAdapter(this)
-            adapter.notes = it as ArrayList<Note>
+            adapter.notes = it
 
             binding.viewPager.adapter = adapter
             binding.viewPager.currentItem = if (ind == adapter.itemCount) ind - 1 else ind
+
+
+            //recyclerView
+            val tmpAdapter = RecyclerViewAdapter(it) { note, pos ->
+                supportFragmentManager.beginTransaction()
+                    .replace(binding.fragmentContainerView.id, ViewPagerFragment(it, pos)
+                    )
+                    .addToBackStack(null)
+                    .commit()
+            }
+            val fragment = RecyclerViewFragment(tmpAdapter)
+            supportFragmentManager.beginTransaction().replace(
+                binding.fragmentContainerView.id, fragment
+            ).commit()
+//            binding.recyclerView.adapter = tmpAdapter
         }
 
         viewModel.searchResult.observe(this) {
             adapter = NotePagerAdapter(this)
-            adapter.notes = it as ArrayList<Note>
+            adapter.notes = it
             binding.viewPager.adapter = adapter
         }
     }

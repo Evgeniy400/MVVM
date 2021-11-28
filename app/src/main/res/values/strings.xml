@@ -3,7 +3,8 @@
     <string name="title_note">Заголовок</string>
     <string name="text_note">Текст</string>
     <string name="save_button">Сохранить</string>
-    <string name="about_info"><![CDATA[<p>Приложение создано <em>Медведевым Е.В.</em> в рамках курса <strong>обучения Android разработке</strong>]]></string>-->
+    <string name="about_info"><![CDATA[<p>Приложение создано <em>Медведевым Е.В.</em> в рамках курса <strong>обучения Android разработке</strong>]]></string>
+    -->
     <string name="date_note">Дата</string>
     <string name="dialog_title">Информация</string>
     <string name="dialog_title_geo">Геолокация</string>
@@ -26,8 +27,8 @@
     <string name="permission_info">Необходим доступ к геолокации</string>
     <string name="gps_processing">Получение данных</string>
     <string name="gps_disabled">Включите местоположение</string>
-
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
