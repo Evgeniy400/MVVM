@@ -16,7 +16,7 @@ class NotePagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa) {
     override fun createFragment(position: Int): Fragment {
         val frag = ShowNoteFragment()
         frag.arguments = Bundle().apply {
-            putParcelable("note", notes[position])
+            putParcelable(ShowNoteFragment.NOTE, notes[position])
         }
         return frag
     }

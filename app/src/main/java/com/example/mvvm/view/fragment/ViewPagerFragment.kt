@@ -1,31 +1,31 @@
 package com.example.mvvm.view.fragment
 
-import android.os.Binder
 import android.os.Bundle
-import android.provider.ContactsContract
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.mvvm.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.mvvm.adapter.NotePagerAdapter
 import com.example.mvvm.databinding.FragmentViewPagerBinding
-import com.example.mvvm.model.database.Note
-import java.text.FieldPosition
+import com.example.mvvm.model.RepositoryImpl
+import com.example.mvvm.model.database.AppDataBase
+import com.example.mvvm.viewmodel.MainViewModel
+import com.example.mvvm.viewmodel.MyViewModelFactory
 
 
-class ViewPagerFragment(private var notes: List<Note>, private var position: Int) : Fragment() {
+class ViewPagerFragment : Fragment() {
     private lateinit var binding: FragmentViewPagerBinding
+    private lateinit var viewModel: MainViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            MyViewModelFactory(RepositoryImpl(AppDataBase.getDatabase(requireContext())))
+        ).get(MainViewModel::class.java)
         binding = FragmentViewPagerBinding.inflate(layoutInflater)
-        binding.viewPager.adapter = NotePagerAdapter(requireActivity()).also {
-            it.notes = notes as ArrayList<Note>
-        }
-        binding.viewPager.setCurrentItem(position, true)
-
-
     }
 
     override fun onCreateView(
@@ -33,6 +33,30 @@ class ViewPagerFragment(private var notes: List<Note>, private var position: Int
         savedInstanceState: Bundle?
     ): View? {
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        subscribeVM()
+    }
+
+    private fun subscribeVM() {
+        viewModel.getAllNotes().observe(viewLifecycleOwner) {
+            binding.viewPager.adapter = NotePagerAdapter(requireActivity()).apply {
+                notes = it
+            }
+            binding.viewPager.setCurrentItem(arguments?.getInt(POSITION) ?: 0, true)
+        }
+
+        viewModel.searchResult.observe(viewLifecycleOwner) {
+            binding.viewPager.adapter = NotePagerAdapter(requireActivity()).apply {
+                notes = it
+            }
+        }
+    }
+
+    companion object {
+        val POSITION = "position"
     }
 
 }

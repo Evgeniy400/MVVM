@@ -11,7 +11,7 @@ import com.example.mvvm.model.database.Note
 
 class RecyclerViewAdapter(
     private var notes: List<Note>,
-    private var onClickListener: (Note, Int) -> (Unit)
+    private var onClickListener: (Int) -> (Unit)
 ) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemTitle: TextView = itemView.findViewById(R.id.title)
@@ -30,7 +30,7 @@ class RecyclerViewAdapter(
             itemTitle.text = notes[position].title
             itemDate.text = notes[position].time
             itemView.setOnClickListener {
-                onClickListener(notes[position], position)
+                onClickListener(position)
             }
         }
     }

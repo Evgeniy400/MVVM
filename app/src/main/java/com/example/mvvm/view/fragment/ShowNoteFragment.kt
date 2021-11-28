@@ -28,13 +28,10 @@ class ShowNoteFragment() : Fragment() {
             this,
             ShowNoteViewModelFactory(
                 RepositoryImpl(AppDataBase.getDatabase(requireActivity())),
-                arguments?.getParcelable("note") ?: Note("", "")
+                arguments?.getParcelable(NOTE) ?: Note("", "")
             )
         ).get(ShowNoteViewModel::class.java)
 
-        viewModel.noteData.observe(this){
-
-        }
 
         binding.shareNote.setOnClickListener {
             startActivity(Intent(Intent.ACTION_SEND).apply {
@@ -62,5 +59,9 @@ class ShowNoteFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return binding.root
+    }
+
+    companion object {
+        val NOTE = "note"
     }
 }

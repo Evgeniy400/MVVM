@@ -108,7 +108,7 @@ class AboutActivity : AppCompatActivity() {
                 }
             } else {
                 EnableGPSDialogFragment().show(supportFragmentManager, null)
-//                getCoords()
+                getCoords()
             }
         } else {
             ActivityCompat.requestPermissions(
