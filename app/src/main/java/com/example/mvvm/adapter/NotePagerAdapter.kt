@@ -9,14 +9,14 @@ import com.example.mvvm.view.fragment.ShowNoteFragment
 
 class NotePagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa) {
 
-    var notes = ArrayList<Note>()
+    var notes = emptyList<Note>()
 
     override fun getItemCount(): Int = notes.size
 
     override fun createFragment(position: Int): Fragment {
         val frag = ShowNoteFragment()
         frag.arguments = Bundle().apply {
-            putParcelable("note", notes[position])
+            putParcelable(ShowNoteFragment.NOTE, notes[position])
         }
         return frag
     }

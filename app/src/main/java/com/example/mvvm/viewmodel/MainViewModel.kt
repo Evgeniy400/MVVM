@@ -17,14 +17,13 @@ class MainViewModel(private var repository: Repository) : ViewModel() {
     fun search(query: String?) {
         if (!query.isNullOrEmpty()) {
             notes.filter {
-                it.text.contains(other = query, true)||
-                        it.title.contains(other = query, true) ||
+                it.title.contains(other = query, true) ||
                         it.time.contains(other = query, true)
             }.also {
                 _searchResult.value = it
             }
         } else {
-           _searchResult.value = notes
+            _searchResult.value = notes
         }
     }
 }
