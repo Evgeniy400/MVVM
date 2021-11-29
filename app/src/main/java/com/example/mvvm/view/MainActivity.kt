@@ -65,6 +65,11 @@ open class MainActivity : FragmentActivity() {
         supportFragmentManager.beginTransaction().replace(
             binding.fragmentContainerView.id, RecyclerViewFragment()
         ).commit()
+
+        viewModel.getAllNotes().observe(this){
+            viewModel.notes = it
+        }
+
     }
 
     private fun initWorkers() {

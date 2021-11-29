@@ -1,9 +1,6 @@
 package com.example.mvvm.viewmodel
 
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.mvvm.model.Repository
 import com.example.mvvm.model.database.Note
 
@@ -13,6 +10,10 @@ class MainViewModel(private var repository: Repository) : ViewModel() {
     fun getAllNotes() = repository.getAllNotes()
 
     var notes = emptyList<Note>()
+        set(value){
+            field = value
+            _searchResult.value = value
+        }
 
     fun search(query: String?) {
         if (!query.isNullOrEmpty()) {

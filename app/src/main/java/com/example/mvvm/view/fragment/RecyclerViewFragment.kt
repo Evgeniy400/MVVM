@@ -42,20 +42,6 @@ class RecyclerViewFragment : Fragment() {
     }
 
     private fun subscribeVM() {
-        viewModel.getAllNotes().observe(viewLifecycleOwner) { list ->
-            viewModel.notes = list
-            val adapter = RecyclerViewAdapter(list) { pos ->
-                val fragment = ViewPagerFragment()
-                fragment.arguments = Bundle().apply {
-                    putInt(ViewPagerFragment.POSITION, pos)
-                }
-                activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(R.id.fragmentContainerView, fragment)
-                    ?.addToBackStack(null)?.commit()
-            }
-            binding.recyclerView.adapter = adapter
-        }
-
         viewModel.searchResult.observe(viewLifecycleOwner) { list ->
             val adapter = RecyclerViewAdapter(list) { pos ->
                 val fragment = ViewPagerFragment()

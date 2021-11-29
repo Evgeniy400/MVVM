@@ -1,6 +1,7 @@
 package com.example.mvvm.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,22 +42,15 @@ class ViewPagerFragment : Fragment() {
     }
 
     private fun subscribeVM() {
-        viewModel.getAllNotes().observe(viewLifecycleOwner) {
-            binding.viewPager.adapter = NotePagerAdapter(requireActivity()).apply {
-                notes = it
-            }
-            binding.viewPager.setCurrentItem(arguments?.getInt(POSITION) ?: 0, true)
-        }
-
         viewModel.searchResult.observe(viewLifecycleOwner) {
             binding.viewPager.adapter = NotePagerAdapter(requireActivity()).apply {
                 notes = it
             }
+            binding.viewPager.setCurrentItem(arguments?.getInt(POSITION) ?: 0, true)
         }
     }
 
     companion object {
         val POSITION = "position"
     }
-
 }
